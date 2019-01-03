@@ -31,8 +31,6 @@ ADD files/distro_signatures.patch /tmp/distro_signatures.patch
 RUN systemctl enable cobblerd httpd dhcpd \
     && cp /var/lib/cobbler/kickstarts/sample.seed /var/lib/cobbler/kickstarts/sample_oribak.seed \
     && cp /var/lib/cobbler/kickstarts/sample_end.ks /var/lib/cobbler/kickstarts/sample_oribak.ks \
-    && cp /var/lib/cobbler/distro_signatures.json /var/lib/cobbler/backup_distro_signatures.json \
-    && patch --binary /var/lib/cobbler/distro_signatures.json < /tmp/distro_signatures.patch \
     && rm -f /tmp/distro_signatures.patch \
     && sed -i -e 's/\(.*disable.*=\) yes/\1 no/' /etc/xinetd.d/tftp \
     && touch /etc/xinetd.d/rsync
